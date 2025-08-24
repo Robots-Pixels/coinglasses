@@ -5,6 +5,7 @@ import "./globals.css";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
+  variable: "--font-fredoka"
 })
 
 export const metadata: Metadata = {
