@@ -1,10 +1,10 @@
-import SideNav from '@/components/SideNav'
+import Navigation from '@/components/Navigation'
 import React from 'react'
 
 export default function Layout({children}: {children: React.ReactNode}) {
   return (
         <div className='bg-back flex h-screen flex-col md:flex-row md:overflow-hidden'>
-            <SideNav/>
+            <Navigation/>
             {children}
         </div>
   )

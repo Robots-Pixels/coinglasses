@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function ToggleModeButton() {
   return (
-    <button className='h-5'>
+    <button className='p-3 bg-darker hover:bg-active cursor-pointer rounded-2xl shadow-xl'>
         {
             (2 === 2) ?
             <Sun/> :

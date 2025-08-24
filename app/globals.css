@@ -5,8 +5,9 @@
 }
 
 @theme{
-  --color-dark: rgba(19, 21, 34, 70);
-  --color-darker: rgba(29, 31, 44, 50);
+  --color-dark: rgba(19, 21, 34, 0.7);
+  --color-darker: rgba(29, 31, 44, 0.5);
+  --color-active: rgba(0, 0, 0, 0.4);
   --color-back: #444655;
   --color-white: #F7F8FF;
   --color-red: #B22222;

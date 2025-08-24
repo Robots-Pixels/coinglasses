@@ -1,35 +1,37 @@
-import { LayoutDashboard, Sun, Table } from "lucide-react";
+import { LayoutDashboard, Sun, Table, User } from "lucide-react";
 import { NavItem } from "@/lib/types";
 import NavLink from "./NavLink";
 
-export default function NavItems() {
+export default function MobileNavItems() {
+
   const navItems: NavItem[] = [
+    {
+      name: "Categories",
+      href: "/dashboard/categories",
+      icon: Table
+    },
+
     {
       name: "Dashboard",
       href: "/dashboard",
       icon: LayoutDashboard,
     },
-
+  
     {
-        name: "Categories",
-        href: "/dashboard/categories",
-        icon: Table
-    }
+      name: "Profile",
+      href: "/dashboard/profile",
+      icon: User
+  }
   ];
 
   return (
-    <section className="flex flex-col h-full space-y-8">
+    <section className="flex w-full flex-row justify-between items-center md:flex-col h-full md:space-y-8">
         {
       navItems.map((item) => {
-
-        const ItemIcon = item.icon;
-
         return (
           <NavLink key={`${item.icon + item.href}`} item={item}/>
         )
-
       }
-
       )}
     </section>
   );

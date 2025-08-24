@@ -2,11 +2,10 @@ import React from 'react'
 
 export default function Dashboard() {
   return (
-    <main className=' flex-grow md:overflow-y-auto'>
-        <div>
-            <section className="">
-                Head
-            </section>
+    <main className=' flex-grow md:overflow-y-auto pr-24 pl-4 py-8'>
+            <header className="">
+              Dashboard
+            </header>
 
             <section className="first">
 
@@ -19,7 +18,6 @@ export default function Dashboard() {
             <section className="transactions">
 
             </section>
-        </div>
     </main>
   )
 }

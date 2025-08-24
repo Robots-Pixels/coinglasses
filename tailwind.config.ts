@@ -11,9 +11,6 @@ const config: Config = {
       colors: {
         rer: "#111"
       },
-      fontFamily: {
-        "fredoka": ["var(--font-fredoka)"]
-      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
