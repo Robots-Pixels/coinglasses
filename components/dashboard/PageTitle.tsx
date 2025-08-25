@@ -9,11 +9,11 @@ export default function PageTitle() {
 
   return (
     <div className='md:w-[65%]'>
-      <div className='capitalize text-3xl md:hidden'>
+      <div className='capitalize text-3xl md:hidden font-semibold'>
         Coinglasses
       </div>
 
-      <div className='capitalize text-2xl md:text-title hidden md:block'>
+      <div className='capitalize font-semibold text-2xl md:text-title hidden md:block'>
         {pageTitle}
       </div>
     </div>

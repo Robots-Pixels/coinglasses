@@ -9,7 +9,7 @@ export default function SearchBar() {
             type="text" 
             placeholder='Search...' 
             className='
-            w-38 md:w-34
+            w-38
             md:placeholder:font-medium 
             placeholder:font-light placeholder:text-white 
             md:placeholder:text-2xl

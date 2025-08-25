@@ -11,7 +11,7 @@ export default function TopLine() {
 
         <Link 
         href="/newTransaction"
-        className='bg-white py-2 px-4 rounded cursor-pointer fixed bottom-24 right-6 md:static'>
+        className='bg-white py-2 px-4 rounded cursor-pointer fixed z-50 bottom-24 right-4 md:static'>
             <PlusIcon className='w-5 h-5 stroke-5 text-back'/>
         </Link>
 

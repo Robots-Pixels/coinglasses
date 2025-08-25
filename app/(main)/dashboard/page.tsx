@@ -1,23 +1,27 @@
-import React from 'react'
+import React from "react";
 
 export default function Dashboard() {
   return (
-    <main className='flex-grow md:overflow-y-auto'>
-            <header className="">
-              Dashboard
-            </header>
+    <main className="flex-grow md:overflow-y-auto">
 
-            <section className="">
+      <section className="flex flex-col space-y-4 md:space-y-0 md:flex-row space-x-4 py-4 md:py-8">
+        <div className="w-full md:w-[60%] glass-thin h-100 md:h-90"></div>
 
-            </section>
+        <div className="flex flex-col space-y-4 md:w-[40%]">
+          <div className="glass-thin h-50 md:h-1/2">
 
-            <section className="evolution">
+          </div>
+          <div className="glass-thin h-50 md:h-1/2">
 
-            </section>
+          </div>
+        </div>
+      </section>
 
-            <section className="transactions">
+      <section className="py-8 w-full glass-thin h-90">
 
-            </section>
+      </section>
+
+      <section className="transactions"></section>
     </main>
-  )
+  );
 }

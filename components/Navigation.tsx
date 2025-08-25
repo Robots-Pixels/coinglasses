@@ -17,8 +17,12 @@ export default function Navigation() {
   }, []);
 
   return (
-      isDesktop ? 
-      <DesktopNav/> :
-      <MobileNav/>
+    <div className="z-30">
+      {
+            isDesktop ? 
+            <DesktopNav/> :
+            <MobileNav/>
+      }
+    </div>
   )
 }

@@ -7,7 +7,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         <div className='bg-back flex h-screen flex-col md:flex-row md:overflow-hidden relative'>
             <Navigation/>
 
-            <div className='md:pr-24 px-4 md:pl-4 py-2 md:py-8 w-full'>
+            <div className='md:pr-24 px-4 md:pl-10 py-2 md:py-8 w-full h-screen overflow-y-auto'>
               <TopLine />
 
               {children}
