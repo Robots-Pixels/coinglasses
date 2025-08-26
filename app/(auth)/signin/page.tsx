@@ -1,51 +1,17 @@
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight} from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import { BsGoogle, BsTwitterX } from 'react-icons/bs'
 
 export default function page() {
   return (
-    <div className='glass-thin w-[90%] h-[90%] md:w-100 text-white px-8 md:px-12 py-4 md:py-6'>
+    <div className='glass-thin w-[90%] md:w-100 text-white px-8 md:px-12 py-4 md:py-6'>
 
-        <h1 className='text-3xl mb-4 md:mb-6 text-center'>Let's Get Started</h1>
+        <h1 className='text-3xl mb-4 md:mb-6 text-center'>Welcome</h1>
 
         <form
         className='flex flex-col space-y-3'
          action="">
-
-          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
-            <div className='flex w-full flex-col'>
-              <label 
-              className='mb-1'
-              htmlFor="">First Name *</label>
-
-              <input 
-              type="text" 
-              className='w-full outline-none h-10 
-              rounded-sm glass-normal px-2'
-              name='firstname'
-              id='firstname'
-              required
-              />
-            </div>
-
-            <div className='flex w-full flex-col'>
-              <label 
-              className='mb-1'
-              htmlFor="">Last Name *</label>
-
-              <input 
-              type="text" 
-              className='w-full outline-none h-10 
-              rounded-sm glass-normal px-2'
-              name='lastname'
-              id='lastname'
-              required
-              />
-
-            </div>
-          </div>
 
           <div className='flex flex-col'>
             <label 
@@ -79,9 +45,9 @@ export default function page() {
 
           <button 
           type='submit'
-          className='py-2 mt-4 md:mt-8 bg-white mb-6 text-back rounded flex justify-center gap-2'
+          className='py-2 mt-4 md:mt-8 mb-8 bg-white text-back rounded flex justify-center gap-2'
           >
-            Sign Up 
+            Sign In
             <ArrowRight/>
           </button>
 
@@ -106,7 +72,7 @@ export default function page() {
 
         </form>
 
-      <p className='text-center mt-4 md:mt-8'>Already Have An Account? <Link href="/signin" className='underline'>Sign In</Link> </p>
+      <p className='text-center mt-4 md:mt-8'>Doesn't Have An Account? <Link href="/signup" className='underline'>Sign Up</Link> </p>
 
 
     </div>
