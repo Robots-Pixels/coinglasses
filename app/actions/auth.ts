@@ -16,9 +16,9 @@ export async function signup(state: FormState, formData: FormData) {
         }
     }
 
-    const {firstname, lastname, email, password} = validatedFileds.data;
+    // const {firstname, lastname, email, password} = validatedFileds.data;
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+    // const hashedPassword = await bcrypt.hash(password, 10)
 
     console.log("Creating a user...");
     console.log("Added!");

@@ -72,7 +72,9 @@ export default function page() {
 
         </form>
 
-      <p className='text-center mt-4 md:mt-8'>Doesn't Have An Account? <Link href="/signup" className='underline'>Sign Up</Link> </p>
+      <p className='text-center mt-4 md:mt-8'>
+        { `Don't Have An Account? `}
+        <Link href="/signup" className='underline'>Sign Up</Link> </p>
 
 
     </div>

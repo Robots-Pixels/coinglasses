@@ -1,4 +1,4 @@
-import { LayoutDashboard, Sun, Table, User } from "lucide-react";
+import { LayoutDashboard, Table, User } from "lucide-react";
 import { NavItem } from "@/lib/types";
 import NavLink from "./NavLink";
 

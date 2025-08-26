@@ -1,21 +1,19 @@
 "use client";
 
 import { signup } from '@/app/actions/auth'
-import { signIn } from '@/auth'
-import { error } from 'console';
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import React, { useActionState } from 'react'
 import { BsGoogle, BsTwitterX } from 'react-icons/bs'
 
-export default function page() {
+export default function Page() {
 
   const [state, action, pending] = useActionState(signup, undefined)
 
   return (
     <div className='glass-thin w-[90%] md:w-100 text-white px-8 md:px-12 py-8'>
 
-      <h1 className='text-3xl mb-4 md:mb-6 text-center'>Let's Get Started</h1>
+      <h1 className='text-3xl mb-4 md:mb-6 text-center'>{`Let's Get Started`}</h1>
 
         <form 
         action={action}

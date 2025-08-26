@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react";
-import { email, z } from "zod";
+import { z } from "zod";
 
 export type NavItem = {
     name: string;
