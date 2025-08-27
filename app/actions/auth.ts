@@ -50,7 +50,7 @@ export async function signup(state: FormState, formData: FormData) {
             return {errors: {email: ["Email already exists."]}};
         }
 
-        redirect("/dashboard");
+        redirect("/signin");
 
     } catch (error) {
         console.error(error);
