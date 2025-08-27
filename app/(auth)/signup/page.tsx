@@ -13,7 +13,9 @@ export default function Page() {
   return (
     <div className='glass-thin w-[90%] md:w-100 text-white px-8 md:px-12 py-8'>
 
-      <h1 className='text-3xl mb-4 md:mb-6 text-center'>{`Let's Get Started`}</h1>
+      <h1 className='text-3xl mb-4 md:mb-6 text-center'>
+        {`Let's Get Started`}
+      </h1>
 
         <form 
         action={action}

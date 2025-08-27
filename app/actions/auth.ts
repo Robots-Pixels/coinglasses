@@ -1,6 +1,11 @@
+"use server";
+
 import { FormState, SignupFormSchema } from "@/lib/types";
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
+import postgres from "postgres";
+
+const sql = postgres(process.env.SUPABASE_URL!, {ssl: "require"});
 
 export async function signup(state: FormState, formData: FormData) {
     const validatedFileds = SignupFormSchema.safeParse({
@@ -16,12 +21,38 @@ export async function signup(state: FormState, formData: FormData) {
         }
     }
 
-    // const {firstname, lastname, email, password} = validatedFileds.data;
+    const {firstname, lastname, email, password} = validatedFileds.data;
 
-    // const hashedPassword = await bcrypt.hash(password, 10)
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    console.log("Creating a user...");
-    console.log("Added!");
+    try {
+        await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`;
 
-    redirect("/dashboard");
+        await sql 
+        `
+        CREATE TABLE IF NOT EXISTS users(
+            id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+            firstname VARCHAR(255) NOT NULL,
+            lastname VARCHAR(255) NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    `;
+
+        const [user] = await sql `
+        INSERT INTO users (firstname, lastname, email, password)
+        VALUES (${firstname}, ${lastname}, ${email}, ${hashedPassword})
+        ON CONFLICT (email) DO NOTHING
+        RETURNING id, email;
+        `;
+
+        if(!user){
+            return {errors: {email: ["Email already exists."]}};
+        }
+
+        redirect("/dashboard");
+
+    } catch (error) {
+        console.error(error);
+    }
 }
