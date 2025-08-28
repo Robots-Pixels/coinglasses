@@ -7,6 +7,8 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get("token");
+    console.log(process.env.SUPABASE_URL);
+
 
     if (!token) {
       return NextResponse.json({ error: "Invalid link" }, { status: 400 });
@@ -17,6 +19,8 @@ export async function GET(request: Request) {
       WHERE email_token = ${token}
       AND email_expires > NOW();
     `;
+
+    console.log("user found");
 
     if (!user) {
       return NextResponse.json(
@@ -30,6 +34,8 @@ export async function GET(request: Request) {
       SET email_verified = true, email_token = null, email_expires = null
       WHERE id = ${user.id};
     `;
+
+    console.log("user found");
 
     return NextResponse.redirect(
       "https://coinglasses-tracker.vercel.app/signin"
