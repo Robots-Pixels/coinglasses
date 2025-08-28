@@ -11,8 +11,8 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendVerificationEmail(to:string, token: string){
-    // const verifyUrl = `http://localhost:3000/verify?token=${token}`;
-    const verifyUrl = `https://coinglasses-tracker.vercel.app/verify?token=${token}`;
+    // const verifyUrl = `http://localhost:3000/verifyEmail?token=${token}`;
+    const verifyUrl = `https://coinglasses-tracker.vercel.app/verifyEmail?token=${token}`;
     
     await transporter.sendMail({
         from: `"Coinglasses" <${process.env.SMTP_USER}>`,
