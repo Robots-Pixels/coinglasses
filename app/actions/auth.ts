@@ -2,8 +2,9 @@
 
 import { FormState, SignupFormSchema } from "@/lib/types";
 import bcrypt from "bcryptjs";
-import { redirect } from "next/navigation";
 import postgres from "postgres";
+import crypto from "crypto";
+import { sendVerificationEmail } from "@/lib/emailVerification";
 
 const sql = postgres(process.env.SUPABASE_URL!, {ssl: "require"});
 
@@ -25,32 +26,38 @@ export async function signup(state: FormState, formData: FormData) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const email_token = crypto.randomBytes(32).toString("hex");
+    const email_expires = new Date(Date.now() + 1000 * 60 * 30); //  30 minutes
+
     try {
         await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`;
 
-        await sql 
-        `
+        await sql`
         CREATE TABLE IF NOT EXISTS users(
             id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
             email TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL
-        )
+            password TEXT NOT NULL,
+            email_verified BOOLEAN DEFAULT false,
+            email_token TEXT,
+            email_expires TIMESTAMP
+        );
     `;
 
-        const [user] = await sql `
-        INSERT INTO users (firstname, lastname, email, password)
-        VALUES (${firstname}, ${lastname}, ${email}, ${hashedPassword})
+        const [user] = await sql`
+        INSERT INTO users (firstname, lastname, email, password, email_token, email_expires)
+        VALUES (${firstname}, ${lastname}, ${email}, ${hashedPassword},  ${email_token}, ${email_expires})
         ON CONFLICT (email) DO NOTHING
-        RETURNING id, email;
+        RETURNING id, email, email_token;
         `;
 
         if(!user){
             return {errors: {email: ["Email already exists."]}};
         }
-
-        redirect("/signin");
+   
+        await sendVerificationEmail(user.email, user.email_token);
+        return ({success: true});
 
     } catch (error) {
         console.error(error);

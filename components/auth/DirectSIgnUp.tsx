@@ -1,12 +1,19 @@
 "use client";
 import { ArrowRight } from "lucide-react";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { signup } from "@/app/actions/auth";
 import { useRouter } from "next/navigation";
+
 
 export default function DirectSIgnUp() {
     const router = useRouter();
   const [state, action, pending] = useActionState(signup, undefined);
+
+  useEffect(() => {
+    if (state?.success){
+      router.push("/verifyEmail");
+    }
+  }, [state, router]);
 
   return (
     <form action={action} className="flex flex-col space-y-3">
