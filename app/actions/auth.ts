@@ -6,7 +6,7 @@ import postgres from "postgres";
 import crypto from "crypto";
 import { sendVerificationEmail } from "@/lib/emailVerification";
 
-const sql = postgres(process.env.SUPABASE_URL!, {ssl: "require"});
+const sql = postgres(process.env.APP_POSTGRES_URL!, {ssl: "require"});
 
 export async function signup(state: FormState, formData: FormData) {
     const validatedFileds = SignupFormSchema.safeParse({

@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import postgres from "postgres";
 
-const sql = postgres(process.env.SUPABASE_URL!, {ssl: "require"});
+const sql = postgres(process.env.APP_POSTGRES_URL!, {ssl: "require"});
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get("token");
-    console.log(process.env.SUPABASE_URL);
+    console.log(process.env.APP_POSTGRES_URL);
 
 
     if (!token) {
