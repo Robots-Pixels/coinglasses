@@ -8,8 +8,8 @@ export default async function OauthSignup() {
             <form 
             action={async () => {
                 "use server";
-                await signIn("google", {redirectTo: "/signin"});
-                
+                await signIn("google", {redirectTo: "/dashboard"});
+
             }}
             className='w-10 h-10 rounded-full glass-normal'>
                 <button

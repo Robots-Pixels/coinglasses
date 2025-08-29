@@ -19,13 +19,13 @@ button{
   --text-2xl: 1.25rem;
   --text-3xl: 1.5rem;
   --text-title: 1.75rem;
-  --text-5xl: 2.75rem;
-  --text-6xl: 3rem;
+  --text-welcome: 2.75rem;
+  --text-name: 3rem;
 }
 
 @layer utilities{
     .glass-thin{
-    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-2xs rounded-4xl;
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-2xs rounded-3xl md:rounded-4xl;
   }
 
     .table-row{
@@ -33,7 +33,7 @@ button{
   }
 
     .glass-normal{
-    @apply bg-white/40 backdrop-blur-md border border-white/20 shadow-2xs;
+    @apply bg-white/40 backdrop-blur-md border border-white/20;
   }
 
     .gradient-chart{
