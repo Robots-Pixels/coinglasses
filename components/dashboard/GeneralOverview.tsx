@@ -1,3 +1,4 @@
+import { refactorName } from '@/lib/utils'
 import { User } from 'next-auth'
 import Image from 'next/image'
 import React from 'react'
@@ -10,7 +11,10 @@ export default function GeneralOverview({user}: {user: User}) {
 
               <div className="opacity-80 md:opacity-100 font-light md:font-medium text-2xl md:flex md:flex-col">
                 <span className="md:text-welcome">Good Morning, </span> 
-                <span className="md:-mt-4 capitalize md:text-name">{user.name}</span>
+                {
+                  user.name && <span className="md:-mt-4 capitalize md:text-name">{refactorName(user.name)}</span>
+                }
+                
               </div>
 
               <div className="md:bg-white/20 md:backdrop-blur-md font-light md:font-medium md:border md:border-white/20 md:shadow-2xs text-4xl md:text-welcome md:px-2 md:py-4 w-fit md:w-[72%] md:mx-0 md:my-0  rounded-3xl md:flex items-center justify-center">

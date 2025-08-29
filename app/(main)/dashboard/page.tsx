@@ -11,6 +11,8 @@ export default async function Dashboard() {
 
   return (
     <main className="flex-grow md:overflow-y-auto">
+          {user.image}
+
       <section className="flex flex-col space-y-4 md:space-y-0 md:flex-row space-x-4 py-4 md:py-8">
 
         <GeneralOverview user={user}/>
