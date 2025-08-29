@@ -19,15 +19,20 @@ export default async function OauthSignup() {
                 </button>
             </form>
 
-            {/* <form action={async () => {
+            <form 
+            action={async () => {
                 "use server";
-                await signIn("twitter", {redirectTo: "http://localhost:3000/dashboard"});
+                await signIn("twitter", {redirectTo: "/dashboard"});
+
             }}
-            className='glass-normal rounded-full p-3'>
-                <button className='flex items-center justify-center'>
-                      <BsTwitterX/>
+            className='w-10 h-10 rounded-full glass-normal'>
+                <button
+                type='submit'
+                className='flex items-center justify-center w-full h-full'>
+                     <BsTwitterX/>
                 </button>
-            </form> */}
+            </form>
+
           </div>
   )
 }
