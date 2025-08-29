@@ -27,7 +27,8 @@ export default function GeneralOverview({user}: {user: User}) {
 
               <div className="w-full h-full overflow-hidden rounded-full">
                 <Image 
-                src={user.image || "/fallbackProfile.jpg"} 
+                src="https://pbs.twimg.com/profile_images/1958302404035649536/kw2t5myf_normal.jpg"
+                // src={user.image || "/fallbackProfile.jpg"} 
                 alt="User Avatar" 
                 width={400} 
                 height={400} 
