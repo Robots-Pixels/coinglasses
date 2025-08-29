@@ -11,7 +11,7 @@ export default function Page() {
         {`Let's Get Started`}
       </h1>
 
-        <DirectSIgnUp/>
+        {/* <DirectSIgnUp/> */}
 
         <OauthSignup/>
 
