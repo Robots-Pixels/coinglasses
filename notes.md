@@ -1,0 +1,1 @@
+## I'm going to change my technique for authentication, starting with OAuth and following NextAuth.js Documentation + Next.js
