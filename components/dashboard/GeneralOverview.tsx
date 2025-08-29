@@ -22,8 +22,11 @@ export default function GeneralOverview({user}: {user: User}) {
             <div className="hidden md:block absolute bottom-0 md:right-3 md:bottom-auto w-[55%] aspect-square rounded-full">
 
               <div className="w-full overflow-hidden rounded-full">
+
+{/* user.image || "" */}
+
                 <Image 
-                src={user.image || ""} 
+                src={"fallbackProfile.jpg"} 
                 alt="User Avatar" 
                 width={200} 
                 height={200} 

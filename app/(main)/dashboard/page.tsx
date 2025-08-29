@@ -1,11 +1,11 @@
 import { auth } from "@/auth";
 import GeneralOverview from "@/components/dashboard/GeneralOverview";
-import Image from "next/image";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Dashboard() {
 
-  const session = await auth();
+  const session = await auth();  
   if (!session?.user) return null;
   const user = session?.user;
 
