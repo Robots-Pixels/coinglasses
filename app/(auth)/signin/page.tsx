@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import DirectSIgnUp from '@/components/auth/DirectSIgnUp';
+import DirectSignUp from '@/components/auth/DirectSignUp';
 import OauthSignup from '@/components/auth/OauthSignup';
 
 export default function Page() {
@@ -11,7 +11,7 @@ export default function Page() {
         Welcome Back!
       </h1>
 
-        {/* <DirectSIgnUp/> */}
+        <DirectSignUp/>
 
         <OauthSignup/>
 

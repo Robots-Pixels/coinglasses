@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@auth/supabase-adapter':
+        specifier: ^1.10.0
+        version: 1.10.0(@supabase/supabase-js@2.56.0)(nodemailer@7.0.5)
       '@radix-ui/react-scroll-area':
         specifier: ^1.2.10
         version: 1.2.10(@types/react-dom@19.1.7(@types/react@19.1.11))(@types/react@19.1.11)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -116,6 +119,11 @@ packages:
         optional: true
       nodemailer:
         optional: true
+
+  '@auth/supabase-adapter@1.10.0':
+    resolution: {integrity: sha512-Gix/dTRBjuj3/zqbMKVhu8z8j93QI3baZS0Fs5VIqpBoeSIxIAyXKJnZBy24B7Uazecp1VUIolbyt5yrR18gFw==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.43.1
 
   '@aws-crypto/sha256-browser@5.2.0':
     resolution: {integrity: sha512-AXfN/lGotSQwu6HNcEsIASo7kWXZ5HYWvfOmSNKDsEqC4OashTp8alTmaz+F7TC2L083SFv5RdB+qU3Vs1kZqw==}
@@ -2441,6 +2449,15 @@ snapshots:
       preact-render-to-string: 6.5.11(preact@10.24.3)
     optionalDependencies:
       nodemailer: 7.0.5
+
+  '@auth/supabase-adapter@1.10.0(@supabase/supabase-js@2.56.0)(nodemailer@7.0.5)':
+    dependencies:
+      '@auth/core': 0.40.0(nodemailer@7.0.5)
+      '@supabase/supabase-js': 2.56.0
+    transitivePeerDependencies:
+      - '@simplewebauthn/browser'
+      - '@simplewebauthn/server'
+      - nodemailer
 
   '@aws-crypto/sha256-browser@5.2.0':
     dependencies:

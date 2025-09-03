@@ -1,4 +1,4 @@
-import { refactorName } from '@/lib/utils'
+import { refactorName } from '@/lib/utils/utils'
 import { User } from 'next-auth'
 import Image from 'next/image'
 import React from 'react'

@@ -10,8 +10,7 @@ const sql = postgres(process.env.APP_POSTGRES_URL!, {ssl: "require"});
 
 export async function signup(state: FormState, formData: FormData) {
     const validatedFileds = SignupFormSchema.safeParse({
-        firstname: formData.get("firstname"),
-        lastname: formData.get("lastname"),
+        fullname: formData.get("fullname"),
         email: formData.get("email"),
         password: formData.get("password"),
     })
@@ -22,7 +21,7 @@ export async function signup(state: FormState, formData: FormData) {
         }
     }
 
-    const {firstname, lastname, email, password} = validatedFileds.data;
+    const {fullname, email, password} = validatedFileds.data;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -35,19 +34,19 @@ export async function signup(state: FormState, formData: FormData) {
         await sql`
         CREATE TABLE IF NOT EXISTS users(
             id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-            firstname VARCHAR(255) NOT NULL,
-            lastname VARCHAR(255) NOT NULL,
+            fullname VARCHAR(255) NOT NULL,
             email TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
+            balance NUMERIC(12, 2) DEFAULT 0,
             email_verified BOOLEAN DEFAULT false,
             email_token TEXT,
-            email_expires TIMESTAMP
+            email_expires TIMESTAMPZ
         );
     `;
 
         const [user] = await sql`
-        INSERT INTO users (firstname, lastname, email, password, email_token, email_expires)
-        VALUES (${firstname}, ${lastname}, ${email}, ${hashedPassword},  ${email_token}, ${email_expires})
+        INSERT INTO users (fullname, email, password, email_token, email_expires)
+        VALUES (${fullname}, ${email}, ${hashedPassword},  ${email_token}, ${email_expires})
         ON CONFLICT (email) DO NOTHING
         RETURNING id, email, email_token;
         `;

@@ -5,7 +5,7 @@ import { signup } from "@/app/actions/auth";
 import { useRouter } from "next/navigation";
 
 
-export default function DirectSIgnUp() {
+export default function DirectSignUp() {
     const router = useRouter();
   const [state, action, pending] = useActionState(signup, undefined);
 
@@ -19,34 +19,19 @@ export default function DirectSIgnUp() {
     <form action={action} className="flex flex-col space-y-3">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex w-full flex-col">
-          <label className="mb-1" htmlFor="firstname">
-            First Name *
+          <label className="mb-1" htmlFor="fullname">
+            Full Name *
           </label>
 
           <input
             type="text"
             className="w-full outline-none h-10 
               rounded-sm glass-normal px-2"
-            name="firstname"
-            id="firstname"
+            name="fullname"
+            id="fullname"
           />
         </div>
-        {state?.errors?.firstname && <p>{state.errors.firstname}</p>}
-
-        <div className="flex w-full flex-col">
-          <label className="mb-1" htmlFor="lastname">
-            Last Name *
-          </label>
-
-          <input
-            type="text"
-            className="w-full outline-none h-10 
-              rounded-sm glass-normal px-2"
-            name="lastname"
-            id="lastname"
-          />
-        </div>
-        {state?.errors?.lastname && <p>{state.errors.lastname}</p>}
+        {state?.errors?.fullname && <p>{state.errors.fullname}</p>}
       </div>
 
       <div className="flex flex-col">
@@ -91,7 +76,7 @@ export default function DirectSIgnUp() {
       <button
         type="submit"
         disabled={pending}
-        className="py-2 mt-4 md:mt-8 bg-white mb-6 text-back rounded flex justify-center gap-2"
+        className="py-2 mt-4 md:mt-8 bg-white mb-6 text-back disabled:opacity-70 rounded flex justify-center gap-2"
       >
         Sign Up
         <ArrowRight />

@@ -1,5 +1,6 @@
 import { BsGoogle, BsTwitterX } from 'react-icons/bs'
 import { signIn } from '@/auth';
+import { saveUserIntoDB } from '@/lib/utils/signup_utils';
 
 export default async function OauthSignup() {
   return (
@@ -9,7 +10,7 @@ export default async function OauthSignup() {
             action={async () => {
                 "use server";
                 await signIn("google", {redirectTo: "/dashboard"});
-
+                await saveUserIntoDB();
             }}
             className='w-10 h-10 rounded-full glass-normal'>
                 <button
@@ -23,6 +24,7 @@ export default async function OauthSignup() {
             action={async () => {
                 "use server";
                 await signIn("twitter", {redirectTo: "/dashboard"});
+                await saveUserIntoDB();
 
             }}
             className='w-10 h-10 rounded-full glass-normal'>

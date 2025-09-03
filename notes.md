@@ -1,7 +1,7 @@
-Protecting The DashBoard only with session existence is technique is great, but could be cracked with tools like Postman or even curl. 
+1. Oauth with Auth.js returns auth containing user session. So sesion management is done.
+ 
+2. Save user data inside the database.
 
-It's good on an UI level, but that's all.
+3. Create Session Table (id, user_id, expiresAt)
 
-## We will also have to protect the routes. 
-
-Reminder for myself : https://authjs.dev/getting-started/session-management/protecting
+4. Save session data inside the database 
