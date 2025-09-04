@@ -10,7 +10,6 @@ export default async function OauthSignup() {
             action={async () => {
                 "use server";
                 await signIn("google", {redirectTo: "/dashboard"});
-                await saveUserIntoDB();
             }}
             className='w-10 h-10 rounded-full glass-normal'>
                 <button
@@ -24,7 +23,6 @@ export default async function OauthSignup() {
             action={async () => {
                 "use server";
                 await signIn("twitter", {redirectTo: "/dashboard"});
-                await saveUserIntoDB();
 
             }}
             className='w-10 h-10 rounded-full glass-normal'>
