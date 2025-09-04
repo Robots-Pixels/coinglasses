@@ -1,5 +1,4 @@
 "use server";
-import { auth } from "@/auth";
 import postgres from "postgres";
 const sql = postgres(process.env.APP_POSTGRES_URL!, {ssl: "require"});
 
@@ -30,12 +29,41 @@ export const saveUserIntoDB = async ({ name, email }: { name: string; email: str
       INSERT INTO users (fullname, email)
       VALUES (${name}, ${email})
       ON CONFLICT (email) DO NOTHING
-      RETURNING email;`;
+      RETURNING id, fullname, email;`;
 
-    return user ?? null;
+    await sql`
+    CREATE TABLE IF NOT EXISTS sessions(
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+      expires timestamptz NOT NULL
+  );`;
+
+  let finalUser = user;
+  if (!finalUser) {
+    [finalUser] = await sql`
+    SELECT id, fullname, email
+    FROM users
+    WHERE email = ${email};
+  `;
+  }
+    const session = createUserSession(finalUser.id);
+    return {user, session};
+
   } catch (error) {
     console.log("Error saving user: ", error);
     throw error;
   }
 };
 
+const createUserSession = async (userId: string) => {
+    if (!userId) {
+        throw new Error("User ID is required to create a session");
+    }
+    const [session] = await sql`
+    INSERT INTO sessions (user_id, expires)
+    VALUES(${userId}, NOW() + INTERVAL '7 days')
+    RETURNING *; 
+    `;
+
+    return session;
+}
