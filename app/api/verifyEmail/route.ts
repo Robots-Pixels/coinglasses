@@ -32,9 +32,7 @@ export async function GET(request: Request) {
       SET email_verified = true, email_token = null, email_expires = null
       WHERE id = ${user.id};
     `;
-
-    console.log("user found");
-
+    console.log("user updated");
     return NextResponse.redirect(
       "https://coinglasses.vercel.app/signin"
     );
