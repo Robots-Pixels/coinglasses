@@ -48,12 +48,12 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
     // pages: {
     //     signIn: "/signin"
     // },
-    // callbacks: {
-    //     async signIn() {
-    //     await saveUserIntoDB();
-    //     console.log("Worked");
-    //     return true; // allow sign-in
-    // }
-}
+//     callbacks: {
+//         async signIn() {
+//         await saveUserIntoDB();
+//         console.log("Worked");
+//         return true; // allow sign-in
+//     }
+// }
 }
 );
