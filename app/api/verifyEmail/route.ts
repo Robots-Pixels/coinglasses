@@ -7,8 +7,6 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get("token");
-    console.log(process.env.APP_POSTGRES_URL);
-
 
     if (!token) {
       return NextResponse.json({ error: "Invalid link" }, { status: 400 });
@@ -38,8 +36,9 @@ export async function GET(request: Request) {
     console.log("user found");
 
     return NextResponse.redirect(
-      "https://coinglasses-tracker.vercel.app/signin"
+      "https://coinglasses.vercel.app/signin"
     );
+
   } catch (err) {
     console.error("VERIFY ROUTE ERROR:", err);
     return NextResponse.json({ error: "Server error", details: String(err) }, { status: 500 });

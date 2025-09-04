@@ -56,6 +56,7 @@ export async function signup(state: FormState, formData: FormData) {
         }
    
         await sendVerificationEmail(user.email, user.email_token);
+        
         return ({success: true});
 
     } catch (error) {
