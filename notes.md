@@ -1,7 +1,4 @@
-1. Oauth with Auth.js returns auth containing user session. So sesion management is done.
- 
-2. Save user data inside the database.
-
-3. Create Session Table (id, user_id, expiresAt)
-
-4. Save session data inside the database 
+1. After redirecting to the signIn Page, let's ...
+2. Check signIn information then ...
+3. If good let's Store a Session inside both Database and Cookies : 7 days.
+4. 

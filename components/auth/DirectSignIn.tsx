@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 
 export default function DirectSignIn() {
-    const router = useRouter();
+  const router = useRouter();
   const [state, action, pending] = useActionState(signin, undefined);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function DirectSignIn() {
         disabled={pending}
         className="py-2 mt-4 md:mt-8 bg-white mb-6 text-back disabled:opacity-70 rounded flex justify-center gap-2"
       >
-        Sign Up
+        Let's Start
         <ArrowRight />
       </button>
 

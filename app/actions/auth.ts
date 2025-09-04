@@ -56,7 +56,7 @@ export async function signup(state: FormState, formData: FormData) {
         }
    
         await sendVerificationEmail(user.email, user.email_token);
-        
+
         return ({success: true});
 
     } catch (error) {
@@ -83,22 +83,33 @@ export async function signin(state: FormState, formaData: FormData){
             SELECT * FROM users WHERE email = ${email};
         `
         if(!foundUser){
-            return {error: {email: ["No user found with this email"]}};
+            return {errors: {email: ["No user found with this email"]}};
         }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const validatedPassword = bcrypt.compare(hashedPassword, foundUser.password);
         if(!validatedPassword){
-            return {error: {password: ["Incorrect password"]}};
+            return {errors: {password: ["Incorrect password"]}};
         }
 
         if (!foundUser.email_verified){
-            return {error: {email: ["Please verify your email to sign in."]}};
+            if(!foundUser.email_token){
+                return {errors: {email: ["The email you provided was used to connect using Google or Twitter. Please, login using one of them of create a new account."]}};
+            }
+            
+            if (new Date(foundUser.email_expires) < new Date()){
+                return {errors: {email: ["The verification link has expired. Please, sign up again."]}};
+            }
+
+            return {errors: {email: ["Please verify your email to sign in."]}};
         }
+
+        console.log("User signed in:", foundUser);
 
         return ({success: true});
         
     } 
     catch (error) {
-        return {error: {password: ["Something went wrong. Please try again later."]}};
+        return {errors: {password: ["Something went wrong. Please try again later."]}};
     }
 }
