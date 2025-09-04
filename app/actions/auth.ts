@@ -1,6 +1,6 @@
 "use server";
 
-import { FormState, SignupFormSchema } from "@/lib/types";
+import { FormState, SignInFormSchema, SignupFormSchema } from "@/lib/types";
 import bcrypt from "bcryptjs";
 import postgres from "postgres";
 import crypto from "crypto";
@@ -60,5 +60,44 @@ export async function signup(state: FormState, formData: FormData) {
 
     } catch (error) {
         console.error(error);
+    }
+}
+
+export async function signin(state: FormState, formaData: FormData){
+    const validatedFields = SignInFormSchema.safeParse({
+        email: formaData.get("email"),
+        password: formaData.get("password"),
+    });
+
+    if(!validatedFields.success){
+        return {
+            errors: validatedFields.error.flatten().fieldErrors,
+        }        
+    }
+
+    const {email, password} = validatedFields.data;
+
+    try {
+        const [foundUser] = await sql`
+            SELECT * FROM users WHERE email = ${email};
+        `
+        if(!foundUser){
+            return {error: {email: ["No user found with this email"]}};
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const validatedPassword = bcrypt.compare(hashedPassword, foundUser.password);
+        if(!validatedPassword){
+            return {error: {password: ["Incorrect password"]}};
+        }
+
+        if (!foundUser.email_verified){
+            return {error: {email: ["Please verify your email to sign in."]}};
+        }
+
+        return ({success: true});
+        
+    } 
+    catch (error) {
+        return {error: {password: ["Something went wrong. Please try again later."]}};
     }
 }

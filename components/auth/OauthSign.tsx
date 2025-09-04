@@ -2,7 +2,7 @@ import { BsGoogle, BsTwitterX } from 'react-icons/bs'
 import { signIn } from '@/auth';
 import { saveUserIntoDB } from '@/lib/utils/signup_utils';
 
-export default async function OauthSignup() {
+export default async function OauthSign() {
   return (
           <div className='flex items-center justify-center space-x-14 mt-4'>
             

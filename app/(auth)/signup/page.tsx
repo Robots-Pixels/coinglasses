@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import DirectSignUp from '@/components/auth/DirectSignUp';
-import OauthSignup from '@/components/auth/OauthSignup';
+import OauthSign from '@/components/auth/OauthSign';
 
 export default function Page() {
 
@@ -13,7 +13,7 @@ export default function Page() {
 
         <DirectSignUp/>
 
-        <OauthSignup/>
+        <OauthSign/>
 
       <p className='text-center mt-4'>Already Have An Account? <Link href="/signin" className='underline'>Sign In</Link> </p>
 
