@@ -51,6 +51,7 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
     callbacks: {
         async signIn() {
         await saveUserIntoDB();
+        console.log("Worked");
         return true; // allow sign-in
     }
 }
