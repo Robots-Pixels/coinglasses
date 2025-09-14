@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import DirectSignUp from '@/components/auth/DirectSignUp';
 import OauthSign from '@/components/auth/OauthSign';
 import DirectSignIn from '@/components/auth/DirectSignIn';
 

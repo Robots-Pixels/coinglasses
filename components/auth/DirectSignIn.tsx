@@ -10,8 +10,8 @@ export default function DirectSignIn() {
   const [state, action, pending] = useActionState(signin, undefined);
 
   useEffect(() => {
-    if (state?.success){
-      router.push("/verifyEmail");
+    if (state?.success) {
+      router.push("/dashboard");
     }
   }, [state, router]);
 
