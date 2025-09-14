@@ -67,3 +67,14 @@ const createUserSession = async (userId: string) => {
 
     return session;
 }
+
+
+export const deleteFromDatabase = async (userId: string) => {
+    if (!userId) {
+        throw new Error("User ID is required to delete a user");
+    }
+    await sql`
+    DELETE FROM sessions WHERE user_id = ${userId};
+    `;
+    return;
+}

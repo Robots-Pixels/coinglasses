@@ -5,6 +5,10 @@ import bcrypt from "bcryptjs";
 import postgres from "postgres";
 import crypto from "crypto";
 import { sendVerificationEmail } from "@/lib/emailVerification";
+import { auth, signOut } from "@/auth";
+import { createSession, deleteSession } from "@/lib/session";
+import { redirect } from "next/navigation";
+import { deleteFromDatabase } from "@/lib/utils/signup_utils";
 
 const sql = postgres(process.env.APP_POSTGRES_URL!, {ssl: "require"});
 
@@ -104,10 +108,22 @@ export async function signin(state: FormState, formaData: FormData){
             return {errors: {email: ["Please verify your email to sign in."]}};
         }
 
+        // Delete existing sessions
+
+        deleteSession();
+        const session = await auth();
+
+        if (session?.user?.id) {
+            await signOut();
+            await deleteFromDatabase(session.user?.id);
+        }
+
+        // Create Session Cookie
+
         console.log("User signed in:", foundUser);
-        
-        return ({success: true});
-        
+        await createSession(foundUser.id);
+
+        redirect("/dashboard");
     } 
     catch (error) {
         return {errors: {password: ["Something went wrong. Please try again later."]}};

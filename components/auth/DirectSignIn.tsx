@@ -9,12 +9,12 @@ export default function DirectSignIn() {
   const router = useRouter();
   const [state, action, pending] = useActionState(signin, undefined);
 
-  useEffect(() => {
-    if (state?.success) {
-      router.push("/dashboard");
-    }
-  }, [state, router]);
-
+  // useEffect(() => {
+  //   if (state?.success) {
+  //     router.push("/dashboard");
+  //   }
+  // }, [state, router]);
+  
   return (
     <form action={action} className="flex flex-col space-y-3">
       <div className="flex flex-col">
